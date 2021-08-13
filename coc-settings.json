@@ -1,0 +1,16 @@
+{
+  "eslint.nodePath": "/home/gonzalo/.config/yarn/global/node_modules",
+  "suggest.noselect": false,
+  "tabnine.disable_file_regex": ["[.]md$", "[.]html$", "[.]css$"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "Markdown",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "graphql",
+    "html",
+    "css,"
+  ]
+}
