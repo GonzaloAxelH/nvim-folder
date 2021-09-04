@@ -17,9 +17,6 @@ set bs=indent,eol,start
 call plug#begin('~/.vim/plugged')
 
 if has('nvim')
-  "revision de codigo
-  "Plug 'dense-analysis/ale'
-
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/defx.nvim'
@@ -34,7 +31,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'epilande/vim-react-snippets'
 Plug 'mxw/vim-jsx'
-Plug 'Valloric/MatchTagAlways'
+"Plug 'Valloric/MatchTagAlways'
 Plug 'tellijo/vim-react-native-snippets'
 " ES2015 code snippets  and Javascript,TYpescript plugins
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
@@ -42,26 +39,35 @@ Plug 'epilande/vim-es2015-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+"ventanas emergentes
+Plug 'ellisonleao/glow.nvim', {'do': ':GlowInstall', 'branch': 'main'}
+
 "css, scss ,html ,ejs,etc.
 Plug 'nikvdp/ejs-syntax'
 Plug 'mlaursen/coc-scssmodules', {'do': 'yarn install && yarn build'}
 Plug 'ap/vim-css-color'
+
+
 "barras de estdo
-Plug 'itchyny/lightline.vim'
-Plug 'oldwomanjosiah/lightline-gruvbox.vim'
+"- - - - Plug 'itchyny/lightline.vim'
+"- - - - Plug 'oldwomanjosiah/lightline-gruvbox.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "coloreo y pretier
 Plug 'sheerun/vim-polyglot'
+Plug 'chemzqm/vim-jsx-improve'
 "Git
-"Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 Plug 'tsony-tsonev/nerdtree-git-plugin'  
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-signify'
 "Autocompletado
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "themas
+"Plug 'vim-scripts/gruvbox'
 Plug 'morhetz/gruvbox' 
-Plug 'joshdick/onedark.vim'
-Plug 'ayu-theme/ayu-vim'
 "latex
 Plug 'lervag/vimtex'
 "otros
@@ -70,7 +76,6 @@ Plug 'psliwka/vim-smoothie'
 Plug 'scrooloose/nerdtree' 
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' "coloreo de nedtree
 Plug 'ryanoasis/vim-devicons' " Icons 
-
 
 Plug 'ctrlpvim/ctrlp.vim' 
 Plug 'scrooloose/nerdcommenter' 
@@ -82,10 +87,22 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'preservim/nerdtree'
 
 call plug#end()
-"one dark pro
-"syntax on
+let g:airline_theme='gruvbox'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsSnippetDirectories=[$HOME.'/configs/.vim/UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<C-_>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+
+"git config
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '-'
 "Kite config
-let g:kite_supported_languages = ['python','javascript','c#']
+let g:kite_supported_languages = ['python','javascript']
 "coc config 
 autocmd FileType python let b:coc_suggets_disable = 1
 autocmd FileType javascript let b:coc_suggets_disable = 1
@@ -116,24 +133,31 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_plugin_hi_groups = 1
 let g:lightline = { 'colorscheme': 'gruvbox'}
-   set background=dark
-   colorscheme gruvbox
-"syntax on
-" Ayu theme
-"set termguicolors     " enable true colors support
-"let ayucolor="light"  " for light version of theme
-"let ayucolor="mirage" " for mirage version of theme
-"let ayucolor="dark"   " for dark version of theme
-"colorscheme ayu
-
-
+set background=dark
+colorscheme gruvbox
 " Change icons for Git 
-let g:signify_sign_add ='●'
-let g:signify_sign_delete= '↛'
-let g:signify_sign_delete_first_line = '@'
-let g:signify_sign_change = '↛'  
+let g:signify_sign_add ='+'
+let g:signify_sign_delete= '●'
+let g:signify_sign_change = '→'
 
 
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '-'
 "Nerdtree
 let NERDTreeQuitOnOpen =1
 nmap <C-n> :NERDTreeToggle<CR>
@@ -171,7 +195,7 @@ let g:coc_global_extensions = [
 \ 'coc-tsserver',
 \ 'coc-eslint', 
 \ 'coc-prettier', 
-\ 'coc-json', 
+\ 'coc-json',
 \ ]
 " if hidden is not set, TextEdit might fail.
 set hidden "Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
@@ -213,11 +237,18 @@ let NERDTreeDirArrows=1
 let NERDTreeShowLineNumbers=1
 let NERDTreeMapOpenInTab='\t'
 let g:javascript_plugin_flow = 1
-hi jsxAttrib ctermfg=214
-hi jsxComponentName   ctermfg=108
 let g:jsx_ext_required = 1
-"let g:polyglot_disabled = ['jsx']
-"hi link jsxCloseString htmlTag
+"colors jsx
+hi jsxAttrib  ctermfg=214
+hi jsxComponentName ctermfg=142 cterm=bold
+hi jsxTagName ctermfg=142 cterm=bold
+hi javascriptImport ctermfg=214
+hi javascriptExport ctermfg=214
+hi javaScriptNumber ctermfg=108
+"colors coc.hi
+hi CocUnusedHighlight ctermfg=244
+
+"colors nerdtree
 let g:mta_filetypes = {
     \ 'xhtml' : 1,
      \'javascriptreact' :1,
@@ -226,23 +257,6 @@ let g:mta_filetypes = {
      \'javascript':1,
     \ 'javascript.jsx': 1,
     \}
-
-
-"resaltado de  javascript simbolos
-"let g:javascript_conceal_function             = "ƒ"
-"let g:javascript_conceal_null                 = "ø"
-"let g:javascript_conceal_this                 = "@"
-"let g:javascript_conceal_return               = "⇚"
-"let g:javascript_conceal_undefined            = "¿"
-"let g:javascript_conceal_NaN                  = "ℕ"
-"let g:javascript_conceal_prototype            = "¶"
-"let g:javascript_conceal_static               = "•"
-"let g:javascript_conceal_super                = "Ω"
-"let g:javascript_conceal_arrow_function       = "⇒"
-"let g:javascript_conceal_noarg_arrow_function = "🞅"
-"let g:javascript_conceal_underscore_arrow_function = "🞅"
-"latex config
-"cabbrev W w !pdflatex %
 
 " Lightlane
 let g:lightline = {
@@ -268,10 +282,44 @@ let g:lightline = {
       \   'right': ''
       \ }
       \}
+"terminal integrated config
+" open new split panes to right and below
+set splitright
+set splitbelow
+" turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-x>
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+n
+function! OpenTerminal()
+  split term://bash
+  resize 10
+endfunction
+nnoremap <c-x> :call OpenTerminal()<CR>
 
 
-"simbolos ✿   ◉ ✮ °
-"➜  ➽  ➱ 	➱   ● ●
-"c# 
-"
+
+
+let g:airline_powerline_fonts = 1                                                                                                         
+let g:airline_section_b = '%{getcwd()}' " in section B of the status line display the CWD                                                 
+                                                                                                                                          
+"TABLINE:                                                                                                                                 
+                                                                                                                                          
+let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
+let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline                                            
+let g:airline#extensions#tabline#tabs_label = ''       " can put text here like BUFFERS to denote buffers (I clear it so nothing is shown)
+let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)      
+let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab                                                    
+let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right                                                           
+let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline                                                 
+let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline                                  
+let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
+let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
+let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
+
+
+
+
+
+
 
