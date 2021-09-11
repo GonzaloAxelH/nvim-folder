@@ -64,7 +64,7 @@ snippet des "const {} =" b
 const { $1 } = $2
 endsnippet
 
-snippet rfc "React function component" b
+snippet rfc "react function component" b
 const $1 = ${2:($3)} => {
   return (
     <div>
@@ -76,8 +76,8 @@ const $1 = ${2:($3)} => {
 export default $1
 endsnippet
 
-snippet rnfc "React native function component" b
-import React from 'react'
+snippet rnfc "react native function component" b
+import react from 'react'
 import { ${4} } from 'react-native'
 
 const $1 = ${2:($3)} => {
@@ -91,10 +91,10 @@ const $1 = ${2:($3)} => {
 export default $1
 endsnippet
 
-snippet rcc "React class component" b
-import { Component } from 'react'
+snippet rcc "react class component" b
+import { component } from 'react'
 
-class $1 extends Component {
+class $1 extends component {
   render() {
     return (
       <div>
